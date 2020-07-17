@@ -1,6 +1,7 @@
 package stepDefinitions;           
 
 import cucumber.api.PendingException;
+
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.When;
 import cucumber.api.java.en.Then;
@@ -8,20 +9,32 @@ import cucumber.api.java.en.And;
 import cucumber.api.junit.Cucumber;
 import junit.framework.Assert;
 
+import java.io.FileInputStream;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import utilities.ExcelDriver;
+
 @RunWith(Cucumber.class)
 public class ELSC_stepDefinition {
 	
 	WebDriver driver;
-
+	ExcelDriver exObj = new ExcelDriver();
+	
 	@Given("^User launches the application \"([^\"]*)\" and logs in as an admin$")
     public void user_launches_the_application_something_and_logs_in_as_an_admin(String strArg1) throws Throwable {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\GagandeepPanesar\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		driver = new ChromeDriver();
+		
+        driver = new ChromeDriver();
 		driver.get(strArg1);
 		driver.manage().window().maximize();
 		driver.findElement(By.id("login")).sendKeys("admin");
@@ -75,12 +88,15 @@ public class ELSC_stepDefinition {
 
     @And("^Enters valid credentials in Category Code textbox$")
     public void enters_valid_credentials_in_category_code_textbox() throws Throwable {
-    	driver.findElement(By.id("course_category_code")).sendKeys("BL");
+    	
+    	String categoryCode = exObj.getDataFromExcel(1, 0);
+    	driver.findElement(By.id("course_category_code")).sendKeys(categoryCode);
     }
 
     @And("^Enters valid credentials in Category name textbox$")
-    public void enters_valid_credentials_in_category_name_textbox() throws Throwable {
-    	driver.findElement(By.id("course_category_name")).sendKeys("Blended Learning");
+    public void enters_valid_credentials_in_category_name_textbox() throws Throwable {   
+    	String categoryName = exObj.getDataFromExcel(1, 1);
+    	driver.findElement(By.id("course_category_name")).sendKeys(categoryName);
     }
 
     @And("^Clicks on Yes radio button in Allow adding courses in this category\\? Section$")
