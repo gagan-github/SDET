@@ -32,8 +32,9 @@ public class ELSC_stepDefinition {
 	
 	@Given("^User launches the application \"([^\"]*)\" and logs in as an admin$")
     public void user_launches_the_application_something_and_logs_in_as_an_admin(String strArg1) throws Throwable {
-        System.setProperty("webdriver.chrome.driver", "C:\\Users\\GagandeepPanesar\\Downloads\\chromedriver_win32\\chromedriver.exe");
-		
+        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\GagandeepPanesar\\Downloads\\chromedriver_win32\\chromedriver.exe");
+      
+        System.setProperty("webdriver.chrome.driver", "C:\\Users\\GagandeepPanesar\\eclipse-workspace\\AutomationFramework\\src\\test\\java\\utilities\\chromedriver.exe");
         driver = new ChromeDriver();
 		driver.get(strArg1);
 		driver.manage().window().maximize();

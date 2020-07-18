@@ -24,7 +24,7 @@
 		<link>
 			<name>src/test/java/utilities/testdata1.xlsx</name>
 			<type>1</type>
-			<location>C:/Users/GagandeepPanesar/Downloads/testdata1.xlsx</location>
+			<location>C:/Users/GagandeepPanesar/eclipse-workspace/AutomationFramework/src/test/java/utilities/testdata1.xlsx</location>
 		</link>
 	</linkedResources>
 </projectDescription>
